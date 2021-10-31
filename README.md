@@ -1,6 +1,6 @@
 # vk-mutli-bot
 
-pip install vk_api
+pip install vk_api  
 (файлик token.txt не удалять, туда будет записываться ваш access_token)
 
 ## Создать токен:
