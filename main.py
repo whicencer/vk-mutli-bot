@@ -144,5 +144,7 @@ def select_method():
 		board_create_comment()
 	elif(method == '6'):
 		wall_create_comment()
+	else:
+		print('Такого метода не существует!')
 
 select_method()
