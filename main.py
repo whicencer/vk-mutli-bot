@@ -9,7 +9,7 @@ def captcha_handle(captcha):
 	key = input("Enter captcha code {0}: ".format(captcha.get_url())).strip()
 	return captcha.try_again(key)
 
-if(open('token.txt', 'r').read()):
+if(os.path.getsize('token.txt') > 0):
 	access_token = open('token.txt', 'r').read()
 else:
 	webbrowser.open('https://oauth.vk.com/authorize?client_id=6121396&scope=476037087&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token', new=2)
