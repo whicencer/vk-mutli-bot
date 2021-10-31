@@ -4,6 +4,8 @@ import os
 import time
 import webbrowser
 
+mobile_or_pc = input('[0] - PC\n[1] - Mobile\n>>> ')
+link = 'https://oauth.vk.com/authorize?client_id=6121396&scope=476037087&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token'
 
 def captcha_handle(captcha):
 	key = input("Enter captcha code {0}: ".format(captcha.get_url())).strip()
@@ -12,9 +14,12 @@ def captcha_handle(captcha):
 if(os.path.getsize('token.txt') > 85):
 	access_token = open('token.txt', 'r').read()
 else:
-	webbrowser.open('https://oauth.vk.com/authorize?client_id=6121396&scope=476037087&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token', new=2)
-	access_token = input('Введите токен полученный по ссылке или введите существующий: ')
-	open('token.txt', 'w').write(access_token)
+	if(mobile_or_pc == '0'):
+		webbrowser.open(link, new=2)
+		access_token = input('Введите токен полученный по ссылке или введите существующий: ')
+		open('token.txt', 'w').write(access_token)
+	else:
+		os.system("termux-open-url \""+link+"\"")
 vk_session = vk_api.VkApi(captcha_handler=captcha_handle, token=access_token)
 VK = vk_session.get_api()
 
